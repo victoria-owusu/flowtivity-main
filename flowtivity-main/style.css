@@ -196,3 +196,18 @@ svg {
   place-items: center;
 }
 
+.buttons button{
+  font-size: 10px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--clr);
+  transition: transform 0.4s ease-in-out;
+}
+
+.buttons button:hover {
+  transform: scale(1.1);
+}
+

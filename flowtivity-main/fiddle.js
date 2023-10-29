@@ -132,4 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+// TIMER CODE
+const timer = document.querySelector(".timer");
+const title = document.querySelector(".t1mertitle");
+const startBtn = document.querySelector(".startBtn");
+const resumeBtn = document.querySelector(".resumeBtn");
+const pauseBtn = document.querySelector(".pauseBtn");
+const resetBtn = document.querySelector(".resetBtn");
+
+//variable for the timer. amount user works for
+const work_time = 1 * 60;
+const break_time = 5 * 60;
+let timerID = null;
+
+//function to count down
+const countDown = (time) => {
+  return () => {
+  timer.textContent = time;
+  time--;
+    if (time < 0){
+      stopTimer();
+    }
+  }
+
+}
+
+//function to start timer
+const startTimer = (startTime) => {
+  //lets user know the timer started
+  alert("Started Timer!");
+  if (timerID !== null){
+    stopTimer();
+  }
+  return setInterval(countDown(startTime), 1000);
+}
+
+//to start time when you click on event listener
+startBtn.addEventListener('click', ()=>{
+  timerID = startTimer(work_time);
+});
+
 });
