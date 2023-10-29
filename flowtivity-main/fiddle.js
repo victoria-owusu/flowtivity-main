@@ -143,30 +143,37 @@ const resetBtn = document.querySelector(".resetBtn");
 
 //variable for the timer. amount user works for
 const work_time = 1 * 60;
-const break_time = 5 * 60;
+const break_time = 30;
 let timerID = null;
 
 //function to count down
-const countDown = (time) => {
+const countDown = (time, isWorkTime) => {
   return () => {
-  timer.textContent = time;
-  time--;
-    if (time < 0){
+    timer.textContent = time;
+    time--;
+    if (time < 0) {
       stopTimer();
+      if (isWorkTime) {
+        timerID = startTimer(break_time, false); // Start break timer
+      } else {
+        timerID = startTimer(work_time, true); // Start work timer
+      }
     }
-  }
+  };
+};
 
-}
+
 
 //function to start timer
 const startTimer = (startTime) => {
   //lets user know the timer started
   alert("Started Timer!");
-  if (timerID !== null){
+  if (timerID !== null) {
     stopTimer();
   }
   return setInterval(countDown(startTime), 1000);
 }
+
 
 //to start time when you click on event listener
 startBtn.addEventListener('click', ()=>{
