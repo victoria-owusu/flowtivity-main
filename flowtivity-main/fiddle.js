@@ -145,18 +145,39 @@ const resetBtn = document.querySelector(".resetBtn");
 const work_time = 1 * 60;
 const break_time = 30;
 let timerID = null;
+let oneRoundCompleted = false; // one round = work time and break time
+let totalCount = 0;
 
+
+//function to update title
+const updateTitle = (msg) => {
+  title.textContent = msg;
+}
+
+//function to save pomodoro counts to local storage
+const saveLocalCounts = () => {
+  let counts = JSON.parse(localStorage.getItem("pomoCounts"));
+  counts != null ? counts++ : counts = 1;
+  localStorage.setItem("pomoCounts", JSON.stringify(counts));
+}
 //function to count down
-const countDown = (time, isWorkTime) => {
+const countDown = (time) => {
   return () => {
     timer.textContent = time;
     time--;
     if (time < 0) {
       stopTimer();
-      if (isWorkTime) {
-        timerID = startTimer(break_time, false); // Start break timer
-      } else {
-        timerID = startTimer(work_time, true); // Start work timer
+      timerID = startTimer(break_time);
+      if (!oneRoundCompleted){
+        timerID = startTimer(break_time);
+        oneRoundCompleted = true;
+        updateTitle("It's Break Time!");
+      }
+      else {
+        updateTitle("Round completed!");
+        setTimeout(()=> updateTitle("Start Timer Again!"), 2000);
+        totalCount++;
+        saveLocalCounts();
       }
     }
   };
@@ -174,10 +195,16 @@ const startTimer = (startTime) => {
   return setInterval(countDown(startTime), 1000);
 }
 
+//function to stop timer
+const stopTimer = () => {
+  clearInterval(timerID);
+  timerID = null;
+}
 
 //to start time when you click on event listener
 startBtn.addEventListener('click', ()=>{
   timerID = startTimer(work_time);
+  updateTitle("It's Work Time!");
 });
 
 });
