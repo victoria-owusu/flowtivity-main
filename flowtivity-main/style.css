@@ -5,6 +5,10 @@
         format('woff');
 }
 
+:root {
+  --primary-color: #fff
+}
+
 h1 {
     font-family: 'Pixel';
     color: black;
@@ -201,8 +205,9 @@ svg {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  background-color: var(--clr);
+  background-color: var(--primary-color);
   transition: transform 0.4s ease-in-out;
+  
 }
 
 .buttons button:hover {
