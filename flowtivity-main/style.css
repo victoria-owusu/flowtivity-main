@@ -113,7 +113,7 @@ svg {
   .tick::before {
     content: '✓';
     font-size: 20px;
-    display: none;
+    display: nonjse;
     color: rgb(249, 249, 255);
   }
   
@@ -186,12 +186,10 @@ svg {
   font-weight: 600;
   margin-bottom: 30px;
   letter-spacing: 4.5px;
-  box-shadow:0px 0px 10px rgba(105, 105, 105, 0.9), 0px 0px 20px rgba(105, 105, 105, 0.9), 0px 0px 0px 30px rgba(105, 105, 105, 0.9);
-  margin: 20px;
-  background-color:  rgba(116, 115, 115, 0.9);
+ margin: 20px;
   width:  110px;
   height: 110px;
-  border-radius: 50%;
+  
   display: grid;
   place-items: center;
 }
@@ -242,3 +240,4 @@ svg {
     transform: translateY(0);
   }
 }
+

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const item = document.querySelector(`[data-key='${todo.id}']`);
     
       // add this if block
-      if (todo.deleted) {
+      if (todo && todo.deleted) {
         // remove the item from the DOM
         item.remove();
         // when todoItems is empty
@@ -96,8 +96,7 @@ document.addEventListener('DOMContentLoaded', function(){
      event.preventDefault(); //prevent page refresh on form submission
      //select text input
      const input = document.querySelector('.js-todo-input');
-  
-  //get value of input and remove whitespace
+    //get value of input and remove whitespace
       const text = input.value.trim(); 
       if (text !== '') {
           addTodo(text); //pass text to addTodo Function if the input has text innit
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   
   document.addEventListener('DOMContentLoaded', () => {
-    const ref = localStorage.getItem('todoItemsRef');
+    const ref = localStorage.getItem('todoItemsref');
     if (ref) {
       todoItems = JSON.parse(ref);
       todoItems.forEach(t => {
@@ -143,11 +142,12 @@ document.addEventListener('DOMContentLoaded', function(){
   const pomoCountsDisplay = document.querySelector(".pomoCountsDisplay");
   
   //variable for the timer. amount user works for
-  const work_time = 1 * 60;
-  const break_time = 30;
+  const work_time = 2 * 60;
+  const break_time = 0.5* 60;
   let timerID = null;
   let oneRoundCompleted = false; // one round = work time and break time
   let totalCount = 0;
+  let paused = false;
   
   
   //function to update title
@@ -164,7 +164,10 @@ document.addEventListener('DOMContentLoaded', function(){
   //function to count down
   const countDown = (time) => {
     return () => {
-      timer.textContent = time;
+      const mins = Math.floor(time / 60).toString().padStart(2,'0');
+      const secs = Math.floor(time % 60).toString().padStart(2,'0');
+      //timer.textContext - time;
+      timer.textContent = `${mins}:${secs}`;
       time--;
       if (time < 0) {
         stopTimer();
@@ -179,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function(){
           setTimeout(()=> updateTitle("Start Timer Again!"), 2000);
           totalCount++;
           saveLocalCounts();
-          showPomoCounts();
+          showPomodoroCounts();
         }
       }
     };
@@ -193,6 +196,8 @@ document.addEventListener('DOMContentLoaded', function(){
     alert("Started Timer!");
     if (timerID !== null) {
       stopTimer();
+      paused = true;
+      updateTitle("Timer Paused");
     }
     return setInterval(countDown(startTime), 1000);
   }
@@ -202,16 +207,41 @@ document.addEventListener('DOMContentLoaded', function(){
     clearInterval(timerID);
     timerID = null;
   }
+
+  // function to get time in seconds
+  const getTimeInSeconds = (timeString) => {
+    const[minutes, seconds] = timeString.split(":");
+    return parseInt(minutes * 60) + parseInt(seconds);
+  }
   
-  //to start time when you click on event listener
+  //to start/reset/pause/resum time when you click on event listener
   startBtn.addEventListener('click', ()=>{
     timerID = startTimer(work_time);
     updateTitle("It's Work Time!");
   });
-  
+
+  resetBtn.addEventListener('click', ()=>{
+    stopTimer();
+    timer.textContent = "25:00";
   });
+
+  pauseBtn.addEventListener('click', ()=>{
+    stopTimer();
+    paused = true;
+    updateTitle("Timer Paused");
+  });
+ 
+  resumeBtn.addEventListener('click', () => {
+    if (paused) {
+      const currentTime = getTimeInSeconds(timer.textContent);
+      timerID = startTimer(currentTime);
+      paused = false; // Reset paused to false to indicate the timer is running
+      (!oneRoundCompleted) ? updateTitle("It's Work Time") : updateTitle("It's break!");
+    }
+  });
+  
   // function to show completed pomodoros to user
-  const showPomodoroCounts = () => {
+   const showPomodoroCounts = () => {
     const counts = JSON.parse(localStorage.getItem("pomoCounts")); 
     console.log(counts);
     if (counts > 0 ){
@@ -220,4 +250,7 @@ document.addEventListener('DOMContentLoaded', function(){
     pomoCountsDisplay.firstElementChild.textContent = counts; 
   }
   
-  showPomoCounts();
+  showPomodoroCounts();
+  
+  });
+ 
