@@ -140,6 +140,7 @@ const startBtn = document.querySelector(".startBtn");
 const resumeBtn = document.querySelector(".resumeBtn");
 const pauseBtn = document.querySelector(".pauseBtn");
 const resetBtn = document.querySelector(".resetBtn");
+const pomoCountsDisplay = document.querySelector(".pomoCountsDisplay");
 
 //variable for the timer. amount user works for
 const work_time = 1 * 60;
@@ -178,6 +179,7 @@ const countDown = (time) => {
         setTimeout(()=> updateTitle("Start Timer Again!"), 2000);
         totalCount++;
         saveLocalCounts();
+        showPomoCounts();
       }
     }
   };
@@ -207,4 +209,15 @@ startBtn.addEventListener('click', ()=>{
   updateTitle("It's Work Time!");
 });
 
+// function to show completed pomodoros to user
+const showPomodoroCounts = () => {
+  const counts = JSON.parse(localStorage.getItem("pomoCounts")); 
+  console.log(counts);
+  if (counts > 0 ){
+      pomoCountsDisplay.style.display = "flex";
+  }
+  pomoCountsDisplay.firstElementChild.textContent = counts; 
+}
+
+showPomoCounts();
 });
