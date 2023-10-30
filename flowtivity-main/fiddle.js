@@ -221,3 +221,14 @@ const showPomodoroCounts = () => {
 
 showPomoCounts();
 });
+// function to show completed pomodoros to user
+const showPomodoroCounts = () => {
+  const counts = JSON.parse(localStorage.getItem("pomoCounts")); 
+  console.log(counts);
+  if (counts > 0 ){
+      pomoCountsDisplay.style.display = "flex";
+  }
+  pomoCountsDisplay.firstElementChild.textContent = counts; 
+}
+
+showPomoCounts();
