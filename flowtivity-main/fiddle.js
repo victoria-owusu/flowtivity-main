@@ -1,10 +1,10 @@
+let todoItems = [];
 document.addEventListener('DOMContentLoaded', function(){
 
 
 
-
   //array that holds the todo list items
-  let todoItems = [];
+ 
   
   /* once new todeo item is added to the todoitems array,
   we want it to be rendered on the screen
@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function(){
   
   function renderTodo(todo) {
       // persists application sate to browser local storage
-      localStorage.setItem('todoItemsref', JSON.stringify(todoItems));
+      localStorage.setItem('todoItems', JSON.stringify(todoItems));
   
       const list = document.querySelector('.js-todo-list');
       const item = document.querySelector(`[data-key='${todo.id}']`);
     
       // add this if block
-      if (todo && todo.deleted) {
+      if (todo.deleted) {
         // remove the item from the DOM
         item.remove();
         // when todoItems is empty
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   
   document.addEventListener('DOMContentLoaded', () => {
-    const ref = localStorage.getItem('todoItemsref');
+    const ref = localStorage.getItem('todoItems');
     if (ref) {
       todoItems = JSON.parse(ref);
       todoItems.forEach(t => {
@@ -131,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   
   
+
   
   // TIMER CODE
   const timer = document.querySelector(".timer");

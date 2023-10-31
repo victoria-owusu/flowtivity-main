@@ -65,6 +65,13 @@ h2 {
     color: #1D1D1D;
 }
 
+.t1mertitle {
+  text-align: center;
+}
+
+.blocked {
+  color:#d8c1fa
+}
 
 
 .container {
@@ -248,18 +255,19 @@ svg {
   flex-direction: column;
   margin-top: 30px;
   animation: swipe-up 1s ease-in;
+  
 }
 
 .pomoCountsDisplay span {
   font-size: 50px;
   font-weight: 700;
-  color: #fff;
+  color: #3b3247
 }
 
 .pomoCountsDisplay p {
   font-size: 10px;
   font-weight: 600;
-  color: white;
+  color: #3b3247
 }
 
 @keyframes swipe-up {
@@ -286,8 +294,15 @@ svg {
   font-family: 'minimal';
 }
 
+.technique {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: center;
+}
+
 .technique p {
   color: #d8c1fa;
+  width: 50%;
 }
 
 #websiteInput {
@@ -306,6 +321,10 @@ svg {
   color: #CEB1FB;
 }
 
+.mission p {
+  color: #d8c1fa
+}
+
 .techniquenote {
   color: white;
   text-align: center;
@@ -316,3 +335,6 @@ em {
   color: white;
 }
 
+.blocked h2 {
+  color: #CEB1FB
+}
