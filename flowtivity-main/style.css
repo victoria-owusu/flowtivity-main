@@ -246,3 +246,13 @@ svg {
   }
 }
 
+/*technique css*/
+
+.technique h2 {
+  color: black;
+}
+
+.technique li {
+  list-style-type: disc;
+  display: block;
+}
