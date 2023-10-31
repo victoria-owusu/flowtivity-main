@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #1d1d1d;
+  background-color: #3b3247;
 }
 
 h1 {
@@ -51,7 +51,7 @@ a {
   font-family: 'minimal';
   color: #d8c1fa;
   text-decoration: none;
-  text-shadow: 2px 1px gray;
+  
 
 }
 
@@ -65,6 +65,8 @@ h2 {
     color: #1D1D1D;
 }
 
+
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -72,7 +74,7 @@ h2 {
 }
 
 .float-child-element {  
-  margin: 40px;
+  margin: 70px;
   border-radius: 10px;
   background: #CEB1FB;
   
@@ -212,7 +214,7 @@ svg {
   font-size: 30px;
   font-family: pixel;
   padding-right: 30px;
-  color: #1D1D1D;
+  color: #3b3247;
   font-weight: 600;
   letter-spacing: 4.5px;
   margin: 1px;
