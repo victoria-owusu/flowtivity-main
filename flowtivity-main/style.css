@@ -104,7 +104,7 @@ h2 {
 }
 
 .list {
-    display: inline-block;
+  display: inline-block;
 }
   
 
@@ -116,7 +116,7 @@ svg {
     margin-bottom: 10px;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
     color: white;
     font-family: 'minimal';
@@ -124,7 +124,7 @@ svg {
   
   .todo-item span {
     flex-grow: 1;
-    margin-left: 10px;
+    margin-left: 1px;
     margin-right: 10px;
     font-size: 22px;
   }
@@ -151,7 +151,7 @@ svg {
   .tick::before {
     content: '✓';
     font-size: 20px;
-    display: nonjse;
+    display: none;
     color: rgb(249, 249, 255);
   }
   
