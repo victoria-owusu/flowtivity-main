@@ -27,9 +27,12 @@ h1 {
     font-style: italic;
 }
 
+
 #title {
-    text-align: center;
+  padding-left: 350px ;
 }
+
+
 
 p {
   font-family: 'minimal';
