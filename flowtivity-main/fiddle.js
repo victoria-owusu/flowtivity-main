@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function(){
   const pomoCountsDisplay = document.querySelector(".pomoCountsDisplay");
   
   //variable for the timer. amount user works for
-  const work_time = 2 * 60;
-  const break_time = 0.5* 60;
+  const work_time = 25 * 60;
+  const break_time = 5* 60;
   let timerID = null;
   let oneRoundCompleted = false; // one round = work time and break time
   let totalCount = 0;

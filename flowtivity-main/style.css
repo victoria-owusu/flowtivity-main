@@ -291,21 +291,33 @@ svg {
 }
 
 .technique li {
-  list-style-type: disc;
+ 
   display: block;
   color: white;
   font-family: 'minimal';
 }
 
 .technique {
+  border: 2px solid #CEB1FB;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #3b3247;
+  color: white;
+  
+}
+
+.technique-contain {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  text-align: center;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: repeat(1, 1fr); /* 2 rows */
+    grid-gap: 10px; /* Gap between the boxes */
+    padding-bottom: 20px;
 }
 
 .technique p {
   color: #d8c1fa;
-  width: 50%;
+  
+  text-align: center;
 }
 
 #websiteInput {
@@ -328,7 +340,7 @@ svg {
   color: #d8c1fa
 }
 
-.techniquenote {
+.note {
   color: white;
   text-align: center;
 }
